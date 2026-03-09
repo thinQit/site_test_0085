@@ -1,50 +1,60 @@
 export const dynamic = 'force-dynamic';
 
-import HeroAurora from "@/components/HeroAurora"
-import CTASection from "@/components/CTASection"
+import Section from "@/components/Section";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function TermsPage() {
   return (
     <main>
-      <HeroAurora
-        badge="Effective date: 2026-01-15"
-        title="Terms of Service"
-        subtitle="Simple terms for using this website and purchasing the template."
-        primaryCta={{ label: "View pricing", href: "/#pricing" }}
-        secondaryCta={{ label: "Contact", href: "/contact" }}
-      />
+      <Section>
+        <div className="max-w-4xl mx-auto py-20 md:py-24 px-4">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Terms of Service</h1>
+          <p className="mt-4 text-lg text-gray-600">
+            Simple terms for using the Convertly template and content.
+          </p>
+          <p className="mt-2 text-sm text-gray-500">Effective: January 15, 2026</p>
 
-      <section className="py-20 md:py-24">
-        <div className="mx-auto max-w-4xl space-y-8 px-4 md:px-6">
-          <div>
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground">Key terms</h2>
-            <p className="mt-3 text-muted-foreground">The essentials, without legalese overload.</p>
-          </div>
-          <div className="space-y-6">
-            <article>
-              <h3 className="text-xl font-semibold">License</h3>
-              <p className="mt-2 text-muted-foreground">
-                Your purchase grants a license to use and modify the template for your own projects. Redistribution as a
-                standalone template is not permitted.
-              </p>
-            </article>
-            <article>
-              <h3 className="text-xl font-semibold">Refunds</h3>
-              <p className="mt-2 text-muted-foreground">
-                Refund requests are accepted within 14 days of purchase if the template does not meet your needs.
-              </p>
-            </article>
-            <article>
-              <h3 className="text-xl font-semibold">Support</h3>
-              <p className="mt-2 text-muted-foreground">
-                Support is provided via email on business days. We aim to respond within 1 business day.
-              </p>
-            </article>
+          <Card className="mt-10 rounded-xl border bg-card p-6 md:p-8 space-y-6">
+            <div>
+              <h2 className="text-2xl font-semibold">Template use</h2>
+              <ul className="mt-3 list-disc pl-6 text-gray-700 space-y-1">
+                <li>You may customize the template for your own business or client projects.</li>
+                <li>You may not resell the template as a standalone product without permission.</li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-semibold">No warranty</h2>
+              <ul className="mt-3 list-disc pl-6 text-gray-700 space-y-1">
+                <li>The template is provided “as is” without warranties of any kind.</li>
+                <li>
+                  You are responsible for compliance, accessibility, and legal requirements for your
+                  use case.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-semibold">Contact</h2>
+              <ul className="mt-3 list-disc pl-6 text-gray-700 space-y-1">
+                <li>Support: hello@convertly.page</li>
+                <li>548 Market St, Suite 94123, San Francisco, CA 94104</li>
+              </ul>
+            </div>
+          </Card>
+
+          <div className="mt-8 flex gap-3">
+            <Button asChild>
+              <Link href="/contact">Contact</Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/privacy">Privacy</Link>
+            </Button>
           </div>
         </div>
-      </section>
-
-      <CTASection />
+      </Section>
     </main>
-  )
+  );
 }

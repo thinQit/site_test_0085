@@ -1,104 +1,67 @@
 "use client";
 
-import Link from 'next/link'
-import { ArrowRight, BarChart3, ShieldCheck, Sparkles, Workflow } from 'lucide-react'
+import { BarChart3, Bot, Clock3, Layers3, ShieldCheck, Zap } from 'lucide-react'
 import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
 
 interface FeatureItem {
-  icon: string
   title: string
   description: string
+  icon: string
 }
 
 interface FeatureGridProps {
-  heading?: string
-  subheading?: string
+  title?: string
+  subtitle?: string
   features?: FeatureItem[]
-  calloutTitle?: string
-  calloutDescription?: string
-  calloutCtaLabel?: string
-  calloutCtaHref?: string
-  className?: string
 }
 
-const iconMap = {
-  Sparkles,
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Zap,
+  Bot,
   BarChart3,
-  Workflow,
+  Layers3,
   ShieldCheck,
-}
-
-function getIcon(name: string) {
-  return iconMap[name as keyof typeof iconMap] || Sparkles
+  Clock3,
 }
 
 export default function FeatureGrid({
-  heading = 'Everything you need to scale conversions',
-  subheading = 'From instant experimentation to deep funnel analytics, AcmeFlow gives teams complete control of their growth workflow.',
+  title = 'Everything your revenue team needs to convert faster',
+  subtitle = 'Purpose-built features that remove busywork and keep every rep focused on qualified opportunities.',
   features = [
-    {
-      icon: 'Sparkles',
-      title: 'Smart page personalization',
-      description: 'Automatically adapt headlines and CTA copy by audience source, campaign intent, or funnel stage.',
-    },
-    {
-      icon: 'BarChart3',
-      title: 'Revenue-focused analytics',
-      description: 'Track signups, trials, and paid conversions in one clean dashboard with clear attribution.',
-    },
-    {
-      icon: 'Workflow',
-      title: 'Fast experimentation',
-      description: 'Launch and compare multiple funnel variants without engineering bottlenecks or slow release cycles.',
-    },
-    {
-      icon: 'ShieldCheck',
-      title: 'Built-in reliability',
-      description: 'Enterprise-grade security, role controls, and stable performance for teams shipping at speed.',
-    },
+    { title: 'Smart Lead Scoring', description: 'Automatically prioritize accounts with highest win potential.', icon: 'BarChart3' },
+    { title: 'AI Outreach Drafts', description: 'Generate personalized first-touch messages in seconds.', icon: 'Bot' },
+    { title: 'Multi-Channel Sequences', description: 'Coordinate email, LinkedIn, and call tasks from one place.', icon: 'Layers3' },
+    { title: 'Real-Time Alerts', description: 'Get notified when high-intent leads are active on site.', icon: 'Zap' },
+    { title: 'Enterprise Security', description: 'SOC 2-ready controls, SSO, and role-based access.', icon: 'ShieldCheck' },
+    { title: 'Time-Saving Workflows', description: 'Automate repetitive follow-ups and status updates.', icon: 'Clock3' },
   ],
-  calloutTitle = 'Need enterprise rollout support?',
-  calloutDescription = 'Work directly with our onboarding specialists to migrate your funnels and train your team in under 2 weeks.',
-  calloutCtaLabel = 'Talk to Sales',
-  calloutCtaHref = '#contact',
-  className = '',
 }: Partial<FeatureGridProps>) {
   return (
-    <section id='features' className={cn('bg-muted/40 py-20 md:py-24', className)}>
-      <div className='mx-auto max-w-7xl px-4 md:px-6'>
-        <div className='max-w-3xl'>
-          <h2 className='text-3xl font-bold tracking-tight text-gray-900 md:text-4xl'>{heading}</h2>
-          <p className='mt-4 text-base text-gray-600 md:text-lg'>{subheading}</p>
+    <section id="features" className="bg-white py-20 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="max-w-3xl">
+          <h2 className="text-3xl font-bold tracking-tight text-[#111827] md:text-4xl">{title}</h2>
+          <p className="mt-4 text-lg text-[#111827]/70">{subtitle}</p>
         </div>
 
-        <div className='mt-10 grid gap-6 md:grid-cols-2'>
+        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => {
-            const Icon = getIcon(feature.icon)
+            const Icon = iconMap[feature.icon] || Zap
             return (
-              <Card key={feature.title} className='rounded-xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md'>
-                <div className='inline-flex rounded-lg bg-blue-50 p-2 text-blue-600'>
-                  <Icon className='h-5 w-5' />
+              <Card key={feature.title} className="rounded-xl border bg-white p-6 shadow-sm transition-shadow hover:shadow-md">
+                <div className="inline-flex rounded-lg bg-[#eff6ff] p-2 text-[#2563EB]">
+                  <Icon className="h-5 w-5" />
                 </div>
-                <h3 className='mt-4 text-lg font-semibold text-gray-900'>{feature.title}</h3>
-                <p className='mt-2 text-sm leading-relaxed text-gray-600'>{feature.description}</p>
+                <h3 className="mt-4 text-lg font-semibold text-[#111827]">{feature.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#111827]/70">{feature.description}</p>
               </Card>
             )
           })}
         </div>
 
-        <Card className='mt-8 flex flex-col items-start justify-between gap-4 rounded-xl border border-border bg-card p-6 shadow-sm md:flex-row md:items-center'>
-          <div>
-            <h3 className='text-lg font-semibold text-gray-900'>{calloutTitle}</h3>
-            <p className='mt-1 text-sm text-gray-600'>{calloutDescription}</p>
-          </div>
-          <Button asChild className='rounded-lg bg-blue-600 px-6 py-3 font-semibold tracking-tight text-white hover:bg-blue-700'>
-            <Link href={calloutCtaHref}>
-              {calloutCtaLabel}
-              <ArrowRight className='ml-2 h-4 w-4' />
-            </Link>
-          </Button>
+        <Card className="mt-8 rounded-xl border bg-[#111827] p-6 text-white md:p-8">
+          <p className="text-sm uppercase tracking-wide text-white/70">Callout</p>
+          <h3 className="mt-2 text-2xl font-bold">Teams using GrowthPilot book 2.1x more qualified demos in 90 days.</h3>
         </Card>
       </div>
     </section>

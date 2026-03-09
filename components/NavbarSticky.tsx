@@ -17,7 +17,7 @@ interface NavbarStickyProps {
 }
 
 export default function NavbarSticky({
-  logo = 'Acme Growth',
+  logo = 'Acme AI',
   navItems = [],
   ctaLabel = '',
   ctaHref = '#',

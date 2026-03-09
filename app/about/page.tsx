@@ -1,53 +1,81 @@
 export const dynamic = 'force-dynamic';
 
-import HeroAurora from "@/components/HeroAurora"
-import TeamGrid from "@/components/TeamGrid"
-import CTAVortex from "@/components/CTAVortex"
+import HeroAurora from "@/components/HeroAurora";
+import FeaturesCards3D from "@/components/FeaturesCards3D";
+import CTAVortex from "@/components/CTAVortex";
+import Section from "@/components/Section";
+import { Card } from "@/components/ui/card";
 
 export default function AboutPage() {
   return (
     <main>
       <HeroAurora
-        badge="About"
-        title="A landing page system designed for clarity and action."
-        subtitle="We obsess over hierarchy, spacing, and copy structure so your visitors can decide quickly—and confidently."
-        primaryCta={{ label: "See features", href: "/#features" }}
-        secondaryCta={{ label: "Contact", href: "/contact" }}
+        badge="About Convertly"
+        title="Built for founders who want clarity, not clutter."
+        subtitle="Convertly is a small, opinionated landing page system designed around conversion fundamentals: hierarchy, contrast, proof, and momentum."
+        primaryCta={{ label: "See the sections", href: "/#features" }}
+        secondaryCta={{ label: "Contact us", href: "/contact" }}
       />
 
-      <TeamGrid
-        headline="Built by people who ship."
-        subheadline="A small team focused on fast, polished marketing sites."
-        members={[
+      <Section>
+        <div className="max-w-7xl mx-auto py-20 md:py-24 px-4">
+          <Card className="rounded-xl border bg-card p-8 md:p-10 shadow-sm">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
+              Our approach
+            </h2>
+            <p className="mt-4 text-base md:text-lg text-gray-600">
+              A landing page is a sales conversation. We structure it so visitors
+              always know what you do, why it matters, and what to do next.
+            </p>
+            <div className="mt-6 space-y-4 text-gray-700">
+              <p>
+                We’ve shipped dozens of launch pages across SaaS, agencies, and
+                ecommerce. The highest-performing pages share the same traits:
+                clear promise, strong proof, and frictionless CTAs.
+              </p>
+              <p>
+                Convertly packages those patterns into a clean, modern design
+                system using Next.js, Tailwind, and shadcn/ui—so you can ship fast
+                and iterate confidently.
+              </p>
+            </div>
+          </Card>
+        </div>
+      </Section>
+
+      <FeaturesCards3D
+        badge="Small team, high standards"
+        title="Design-minded builders focused on clarity and conversion."
+        features={[
           {
-            name: "Alex Morgan",
-            title: "Product Designer",
-            imageUrl: "https://res.cloudinary.com/dwc294mzm/image/upload/c_fill,w_1000,h_750,g_auto/v1/site-images/corporate/default.jpg",
-            bio: "Designs conversion-first layouts with strong typography and clear visual rhythm.",
+            icon: "Palette",
+            title: "Avery Kim — Design Systems",
+            description:
+              "Creates scalable type, spacing, and component patterns that feel premium and readable.",
           },
           {
-            name: "Samira Patel",
-            title: "Front-End Engineer",
-            imageUrl: "https://res.cloudinary.com/dwc294mzm/image/upload/c_fill,w_1000,h_750,g_auto/v1/site-images/corporate/default.jpg",
-            bio: "Builds accessible, responsive components with Tailwind and shadcn/ui.",
+            icon: "Code2",
+            title: "Jordan Lee — Front-End",
+            description:
+              "Builds fast, accessible UI with Tailwind and shadcn/ui, optimized for performance.",
           },
           {
-            name: "Jordan Lee",
-            title: "Copy & Messaging",
-            imageUrl: "https://res.cloudinary.com/dwc294mzm/image/upload/c_fill,w_800,h_800,g_auto/v1/site-images/corporate/default.jpg",
-            bio: "Turns product value into scannable, benefit-led sections and CTAs.",
+            icon: "PenLine",
+            title: "Priya Nair — Copy & Conversion",
+            description:
+              "Writes benefit-led messaging and CTA flows that reduce friction and increase intent.",
           },
         ]}
       />
 
       <CTAVortex
-        title="Want a landing page you can iterate on weekly?"
-        subtitle="Start with a clean foundation and refine your message—not your layout."
-        ctaLabel="Get the template"
+        title="Ship your next launch page today."
+        subtitle="Use Convertly’s proven flow and customize it to your product in minutes."
+        ctaLabel="Get Convertly"
         ctaHref="/#pricing"
-        secondaryCtaLabel="Contact"
-        secondaryCtaHref="/contact"
+        secondaryCtaLabel="Back to home"
+        secondaryCtaHref="/"
       />
     </main>
-  )
+  );
 }

@@ -1,46 +1,107 @@
-"use client"
+"use client";
+import React from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
-import React, { createContext, useState, useContext, useRef } from "react"
-import { cn } from "@/lib/utils"
+interface CardContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  className?: string;
+}
 
-const MouseEnterContext = createContext<[boolean, React.Dispatch<React.SetStateAction<boolean>>]>([false, () => {}])
+export function CardContainer({ children, className, ...props }: CardContainerProps) {
+  const ref = React.useRef<HTMLDivElement>(null);
 
-export const CardContainer = ({ children, className, containerClassName }: { children: React.ReactNode; className?: string; containerClassName?: string }) => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [isMouseEntered, setIsMouseEntered] = useState(false)
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return
-    const { left, top, width, height } = containerRef.current.getBoundingClientRect()
-    const x = (e.clientX - left - width / 2) / 25
-    const y = (e.clientY - top - height / 2) / 25
-    containerRef.current.style.transform = "rotateY(" + x + "deg) rotateX(" + (-y) + "deg)"
+  const rotateX = useSpring(useTransform(y, [0, 1], [8, -8]), { stiffness: 100, damping: 20 });
+  const rotateY = useSpring(useTransform(x, [0, 1], [-8, 8]), { stiffness: 100, damping: 20 });
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    const posX = e.clientX - rect.left;
+    const posY = e.clientY - rect.top;
+    x.set(posX / rect.width);
+    y.set(posY / rect.height);
+  }
+  function handleMouseLeave() {
+    x.set(0.5);
+    y.set(0.5);
   }
 
+  React.useEffect(() => {
+    // center the effect initially
+    x.set(0.5);
+    y.set(0.5);
+    // eslint-disable-next-line
+  }, []);
+
   return (
-    <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
-      <div className={cn("flex items-center justify-center", containerClassName)} style={{ perspective: "1000px" }}>
-        <div ref={containerRef} onMouseEnter={() => setIsMouseEntered(true)}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={() => { setIsMouseEntered(false); if (containerRef.current) containerRef.current.style.transform = "rotateY(0deg) rotateX(0deg)" }}
-          className={cn("flex items-center justify-center relative transition-all duration-200 ease-linear", className)}
-          style={{ transformStyle: "preserve-3d" }}>
-          {children}
-        </div>
-      </div>
-    </MouseEnterContext.Provider>
-  )
+    <motion.div
+      ref={ref}
+      className={className}
+      style={
+        {
+          perspective: 1000,
+        } as React.CSSProperties
+      }
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      {...props}
+    >
+      <motion.div
+        style={{
+          rotateX,
+          rotateY,
+        }}
+      >
+        {children}
+      </motion.div>
+    </motion.div>
+  );
 }
 
-export const CardBody = ({ children, className }: { children: React.ReactNode; className?: string }) => (
-  <div className={cn("h-96 w-96 [transform-style:preserve-3d] [&>*]:[transform-style:preserve-3d]", className)}>{children}</div>
-)
-
-export const CardItem = ({ as: Tag = "div", children, className, translateX = 0, translateY = 0, translateZ = 0, ...rest }: any) => {
-  const [isMouseEntered] = useContext(MouseEnterContext)
-  const transform = isMouseEntered ? "translateX(" + translateX + "px) translateY(" + translateY + "px) translateZ(" + translateZ + "px)" : "translateX(0px) translateY(0px) translateZ(0px)"
-  return <Tag className={cn("w-fit transition duration-200 ease-linear", className)} style={{ transform }} {...rest}>{children}</Tag>
+interface CardBodyProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  className?: string;
+}
+export function CardBody({ children, className, ...props }: CardBodyProps) {
+  return (
+    <div
+      className={
+        "relative flex flex-col justify-start items-start overflow-hidden transition-shadow " +
+        className
+      }
+      {...props}
+    >
+      {children}
+    </div>
+  );
 }
 
-export const useMouseEnter = () => useContext(MouseEnterContext)
-export default CardContainer
+interface CardItemProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  className?: string;
+  translateZ?: string | number;
+  as?: React.ElementType;
+}
+export function CardItem({
+  children,
+  className,
+  translateZ = 0,
+  as: Comp = "div",
+  ...props
+}: CardItemProps) {
+  return (
+    <Comp
+      className={className}
+      style={{
+        transform: `translateZ(${translateZ}px)`,
+        willChange: "transform",
+      }}
+      {...props}
+    >
+      {children}
+    </Comp>
+  );
+}

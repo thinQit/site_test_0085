@@ -1,58 +1,40 @@
 "use client";
 
-import { Check } from 'lucide-react'
-import { cn } from '@/lib/utils'
-
-interface LogoItem {
-  name: string
-}
+import { Card } from '@/components/ui/card'
 
 interface LogoCloudProps {
-  title?: string
-  logos?: LogoItem[]
-  proofBullets?: string[]
-  className?: string
+  logos?: string[]
+  metrics?: { label: string; value: string }[]
 }
 
 export default function LogoCloud({
-  title = 'Trusted by growth teams at leading companies',
-  logos = [
-    { name: 'Nexora' },
-    { name: 'Cloudmint' },
-    { name: 'VelocityOS' },
-    { name: 'Finstack' },
-    { name: 'BrightDesk' },
-    { name: 'DataLyft' },
+  logos = ['Northstar', 'Cloudloop', 'Metricly', 'OpenForge', 'ScaleOps', 'Bluewave'],
+  metrics = [
+    { label: 'Teams onboarded', value: '1,200+' },
+    { label: 'Avg. conversion lift', value: '38%' },
+    { label: 'Messages automated', value: '12M+' },
   ],
-  proofBullets = ['SOC 2 compliant', '99.99% uptime', 'No-code setup'],
-  className = '',
 }: Partial<LogoCloudProps>) {
   return (
-    <section className={cn('bg-white py-20 md:py-24', className)}>
-      <div className='mx-auto max-w-7xl px-4 md:px-6'>
-        <p className='text-center text-sm font-semibold uppercase tracking-wide text-gray-500'>{title}</p>
-
-        <div className='mt-8 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6'>
+    <section className="bg-[#f8fafc] py-20 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <p className="text-center text-sm font-medium text-[#111827]/60">Trusted by high-growth teams worldwide</p>
+        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-6">
           {logos.map((logo) => (
-            <div
-              key={logo.name}
-              className='flex h-16 items-center justify-center rounded-xl border border-border bg-card px-3 text-sm font-semibold text-gray-700 shadow-sm'
-            >
-              {logo.name}
+            <div key={logo} className="rounded-xl border bg-white px-4 py-4 text-center text-sm font-semibold text-[#111827]/70">
+              {logo}
             </div>
           ))}
         </div>
 
-        {proofBullets.length > 0 && (
-          <div className='mt-8 flex flex-wrap items-center justify-center gap-4 md:gap-6'>
-            {proofBullets.map((bullet) => (
-              <div key={bullet} className='inline-flex items-center text-sm text-gray-600'>
-                <Check className='mr-2 h-4 w-4 text-blue-600' />
-                {bullet}
-              </div>
-            ))}
-          </div>
-        )}
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {metrics.map((metric) => (
+            <Card key={metric.label} className="rounded-xl border bg-white p-5 text-center">
+              <p className="text-2xl font-bold text-[#111827]">{metric.value}</p>
+              <p className="mt-1 text-sm text-[#111827]/65">{metric.label}</p>
+            </Card>
+          ))}
+        </div>
       </div>
     </section>
   )

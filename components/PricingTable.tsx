@@ -22,12 +22,12 @@ interface PricingTableProps {
 }
 
 export default function PricingTable({
-  headline = 'Simple pricing that scales with your growth',
-  subheadline = 'Choose the plan that fits your current stage and upgrade anytime as your team expands.',
+  headline = 'Simple, transparent pricing',
+  subheadline = 'Choose the plan that matches your growth stage.',
   tiers = [],
 }: Partial<PricingTableProps>) {
   return (
-    <section className="py-20 md:py-24 bg-muted/50">
+    <section className="bg-muted/50 py-20 md:py-28">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">{headline}</h2>
@@ -36,10 +36,7 @@ export default function PricingTable({
         <div className="mt-16 grid gap-8 md:grid-cols-3">
           {tiers.map(function (tier, i) {
             return (
-              <Card
-                key={i}
-                className={'relative flex flex-col rounded-xl ' + (tier.highlighted ? 'border-primary ring-2 ring-primary' : 'border')}
-              >
+              <Card key={i} className={'relative flex flex-col ' + (tier.highlighted ? 'scale-105 border-primary ring-2 ring-primary' : 'border')}>
                 {tier.highlighted && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                     <Badge>Most Popular</Badge>

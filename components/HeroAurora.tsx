@@ -1,9 +1,8 @@
-'use client';
-
-import { AuroraBackground } from '@/components/ui/backgrounds/aurora-background';
-import { TextGenerateEffect } from '@/components/ui/text/text-generate-effect';
-import { Button } from '@/components/ui/button';
-import { motion } from 'framer-motion';
+"use client";
+import { AuroraBackground } from "@/components/ui/backgrounds/aurora-background";
+import { TextGenerateEffect } from "@/components/ui/text/text-generate-effect";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 interface HeroAuroraProps {
   badge?: string;
@@ -14,19 +13,19 @@ interface HeroAuroraProps {
 }
 
 export default function HeroAurora({
-  badge = 'Trusted by growth-focused teams',
-  headline = 'Turn more visitors into qualified pipeline',
-  subheadline = 'A conversion-first landing page system built to capture demand, showcase value, and drive action.',
-  primaryCta = { label: 'Start Free Trial', href: '#' },
-  secondaryCta = { label: '', href: '#' },
+  badge = "New: AI Workflow Studio",
+  headline = "Turn more visitors into qualified pipeline",
+  subheadline = "Launch high-converting funnels, automate follow-ups, and give your team real-time performance insights.",
+  primaryCta = { label: "Start Free Trial", href: "#" },
+  secondaryCta = { label: "Book a Demo", href: "#" },
 }: Partial<HeroAuroraProps>) {
   return (
-    <AuroraBackground auroraColors={['#3b82f6', '#06b6d4', '#67e8f9', '#bfdbfe', '#38bdf8']}>
+    <AuroraBackground auroraColors={['#3b82f6','#06b6d4','#67e8f9','#bfdbfe','#38bdf8']}>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.8, ease: 'easeInOut' }}
-        className="relative flex flex-col items-center justify-center gap-4 px-4 py-24 md:py-36"
+        transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+        className="relative flex flex-col gap-4 items-center justify-center px-4 py-24 md:py-36"
       >
         {badge && (
           <span className="mb-2 inline-block rounded-full border bg-background/50 px-4 py-1.5 text-sm font-medium text-foreground backdrop-blur-sm">
@@ -42,7 +41,7 @@ export default function HeroAurora({
           <Button size="lg" className="px-8 py-6 text-lg" asChild>
             <a href={primaryCta.href}>{primaryCta.label}</a>
           </Button>
-          {secondaryCta && secondaryCta.label && (
+          {secondaryCta && (
             <Button variant="outline" size="lg" className="px-8 py-6 text-lg" asChild>
               <a href={secondaryCta.href}>{secondaryCta.label}</a>
             </Button>

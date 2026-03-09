@@ -1,6 +1,6 @@
-'use client';
-import { Vortex } from '@/components/ui/backgrounds/vortex';
-import { Button } from '@/components/ui/button';
+"use client";
+import { Vortex } from "@/components/ui/backgrounds/vortex";
+import { Button } from "@/components/ui/button";
 
 interface CTAVortexProps {
   headline: string;
@@ -12,16 +12,20 @@ interface CTAVortexProps {
 }
 
 export default function CTAVortex({
-  headline = 'Ready to accelerate your pipeline?',
-  description = 'Launch a high-converting experience in days, not months.',
-  ctaLabel = 'Book a Demo',
+  headline = 'Ready to grow faster with less manual work?',
+  description = 'Start your free trial today and see measurable lift in conversion rates in under two weeks.',
+  ctaLabel = 'Get Started',
   ctaHref = '#',
-  secondaryCtaLabel = '',
+  secondaryCtaLabel = 'Talk to Sales',
   secondaryCtaHref = '#',
 }: Partial<CTAVortexProps>) {
   return (
     <section className="mx-auto h-[30rem] w-full overflow-hidden rounded-md">
-      <Vortex backgroundColor="black" baseHue={205} className="flex h-full w-full flex-col items-center justify-center px-2 py-4 md:px-10">
+      <Vortex
+        backgroundColor="black"
+        baseHue={205}
+        className="flex h-full w-full flex-col items-center justify-center px-2 py-4 md:px-10"
+      >
         <h2 className="text-center text-2xl font-bold text-white md:text-6xl">{headline}</h2>
         {description && <p className="mt-6 max-w-xl text-center text-sm text-white/70 md:text-xl">{description}</p>}
         <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row">

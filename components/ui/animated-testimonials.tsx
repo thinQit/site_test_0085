@@ -1,53 +1,71 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-interface Testimonial {
-  quote: string
-  name: string
-  designation: string
-  src?: string
+export interface AnimatedTestimonial {
+  quote: string;
+  name: string;
+  designation: string;
+  src: string;
 }
 
-export const AnimatedTestimonials = ({ testimonials, className, autoplay = true }: { testimonials: Testimonial[]; className?: string; autoplay?: boolean }) => {
-  const [active, setActive] = useState(0)
+export interface AnimatedTestimonialsProps {
+  testimonials: AnimatedTestimonial[];
+  autoplay?: boolean;
+}
 
-  useEffect(() => {
-    if (!autoplay || testimonials.length <= 1) return
-    const interval = setInterval(() => setActive((p) => (p + 1) % testimonials.length), 5000)
-    return () => clearInterval(interval)
-  }, [autoplay, testimonials.length])
+export function AnimatedTestimonials({
+  testimonials,
+  autoplay = true,
+}: AnimatedTestimonialsProps) {
+  const [current, setCurrent] = React.useState(0);
 
-  if (!testimonials || testimonials.length === 0) return null
+  React.useEffect(() => {
+    if (!autoplay) return;
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % testimonials.length);
+    }, 7000);
+    return () => clearInterval(interval);
+  }, [autoplay, testimonials.length]);
+
+  if (!testimonials || testimonials.length === 0) return null;
+
+  const t = testimonials[current];
 
   return (
-    <div className={cn("max-w-sm md:max-w-4xl mx-auto px-4 py-20", className)}>
-      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-10">
-        <div className="relative h-80 w-full rounded-3xl overflow-hidden bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800">
-          <AnimatePresence mode="wait">
-            <motion.div key={active} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.4 }} className="absolute inset-0 flex items-center justify-center">
-              {testimonials[active]?.src ? <img src={testimonials[active].src} alt={testimonials[active].name} className="h-full w-full object-cover" /> : <span className="text-6xl font-bold text-gray-400">{testimonials[active]?.name?.[0]}</span>}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-        <div className="flex flex-col justify-between py-4">
-          <AnimatePresence mode="wait">
-            <motion.div key={active} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
-              <h3 className="text-2xl font-bold dark:text-white">{testimonials[active]?.name}</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400">{testimonials[active]?.designation}</p>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mt-6 italic">&ldquo;{testimonials[active]?.quote}&rdquo;</p>
-            </motion.div>
-          </AnimatePresence>
-          <div className="flex gap-4 pt-4">
-            <button onClick={() => setActive((p) => (p - 1 + testimonials.length) % testimonials.length)} className="h-10 w-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">&larr;</button>
-            <button onClick={() => setActive((p) => (p + 1) % testimonials.length)} className="h-10 w-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">&rarr;</button>
-          </div>
-        </div>
+    <div className="relative mx-auto flex max-w-2xl flex-col items-center justify-center">
+      <AnimatePresence initial={false} mode="wait">
+        <motion.blockquote
+          key={current}
+          className="mx-auto text-center text-xl text-foreground font-medium leading-relaxed md:text-2xl"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -24 }}
+          transition={{ duration: 0.5 }}
+        >
+          “{t.quote}”
+          <footer className="mt-7 flex flex-col items-center gap-1">
+            <span className="text-base font-semibold text-foreground">{t.name}</span>
+            <span className="text-sm text-muted-foreground">
+              {t.designation}
+            </span>
+          </footer>
+        </motion.blockquote>
+      </AnimatePresence>
+      <div className="mt-6 flex items-center justify-center gap-2">
+        {testimonials.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrent(idx)}
+            aria-label={`Show testimonial ${idx + 1}`}
+            className={`h-2 w-2 rounded-full transition-colors ${
+              idx === current ? "bg-primary" : "bg-muted"
+            }`}
+            tabIndex={0}
+          />
+        ))}
       </div>
     </div>
-  )
+  );
 }
-
-export default AnimatedTestimonials
