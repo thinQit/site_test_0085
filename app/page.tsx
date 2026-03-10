@@ -1,204 +1,196 @@
 export const dynamic = 'force-dynamic';
 
-import HeroAurora from "@/components/HeroAurora";
-import LogoCloud from "@/components/LogoCloud";
-import FeaturesCards3D from "@/components/FeaturesCards3D";
-import TestimonialsAnimated from "@/components/TestimonialsAnimated";
-import PricingTable from "@/components/PricingTable";
-import FAQAccordion from "@/components/FAQAccordion";
-import CTAVortex from "@/components/CTAVortex";
-import Section from "@/components/Section";
+import HeroAurora from '@/components/HeroAurora'
+import LogoCloud from '@/components/LogoCloud'
+import FeaturesCards3D from '@/components/FeaturesCards3D'
+import TestimonialsAnimated from '@/components/TestimonialsAnimated'
+import PricingTable from '@/components/PricingTable'
+import FAQAccordion from '@/components/FAQAccordion'
+import CTAVortex from '@/components/CTAVortex'
 
 export default function HomePage() {
   return (
     <main>
-      <section id="hero">
-        <HeroAurora
-          badge="Built with Next.js + Tailwind + shadcn/ui"
-          title="Launch a landing page that turns visits into signups."
-          subtitle="Convertly is a conversion-first Next.js landing page kit with crisp sections, strong CTA hierarchy, and copy that’s ready to ship. Perfect for waitlists, product launches, and lead gen."
-          primaryCta={{ label: "Get the template", href: "#pricing" }}
-          secondaryCta={{ label: "See what’s included", href: "#features" }}
-        />
+      <HeroAurora
+        badge="No backend required • SEO-ready • Mobile-first"
+        title="Launch a high-converting landing page in a single afternoon."
+        subtitle="Conversion Landing is a clean, focused Next.js + Tailwind + shadcn/ui starter with the exact sections you need: social proof, features, testimonials, pricing, FAQ, and a final CTA—no fluff."
+        primaryCta={{ label: 'Get the Starter', href: '/pricing' }}
+        secondaryCta={{ label: 'See How It Works', href: '#features' }}
+      />
+
+      <section id="social-proof" className="py-20 md:py-24">
+        <LogoCloud />
       </section>
 
-      <Section>
-        <section id="social-proof" className="py-20 md:py-24">
-          <LogoCloud />
-        </section>
-      </Section>
-
-      <section id="features">
+      <section id="features" className="py-20 md:py-24 bg-muted/40">
         <FeaturesCards3D
-          badge="Designed for conversion"
+          badge="Built for conversion"
           title="Everything you need to convert—nothing you don’t."
-          subtitle="A simple, structured landing page with clear messaging, strong hierarchy, and reusable components."
+          subtitle="Designed for clarity: one message, one action, and a smooth path from curiosity to signup."
           features={[
             {
-              icon: "LayoutGrid",
-              title: "Benefit-led sections",
+              icon: 'LayoutTemplate',
+              title: 'Benefit-first sections',
               description:
-                "Hero, social proof, features, testimonials, pricing, FAQ, and final CTA—arranged for momentum and clarity.",
+                'Pre-written structure for hero, proof, features, testimonials, pricing, FAQ, and final CTA—so you can focus on your offer.',
             },
             {
-              icon: "MousePointerClick",
-              title: "One CTA per section",
+              icon: 'MousePointerClick',
+              title: 'High-contrast CTA system',
               description:
-                "Each section has a single primary action to reduce decision fatigue and increase clicks.",
+                'White base, dark text, vibrant primary CTA with consistent button hierarchy and spacing.',
             },
             {
-              icon: "Component",
-              title: "Polished UI components",
+              icon: 'Smartphone',
+              title: 'Responsive by default',
               description:
-                "shadcn/ui building blocks styled for a clean, modern look.",
+                'Mobile-first layout patterns: stacked grids, readable typography, and touch-friendly CTAs.',
             },
             {
-              icon: "Smartphone",
-              title: "Responsive by default",
+              icon: 'Component',
+              title: 'shadcn/ui components',
               description:
-                "Mobile-first layouts with readable type scales and comfortable spacing across breakpoints.",
+                'Use accessible primitives (Accordion, Tabs, Cards, Buttons) with Tailwind tokens for fast iteration.',
             },
             {
-              icon: "Search",
-              title: "SEO-ready structure",
+              icon: 'Search',
+              title: 'SEO-ready page structure',
               description:
-                "Semantic headings, clean navigation, and metadata defaults to help your page rank and share well.",
+                'Clear headings, semantic sections, and metadata defaults to help your landing page rank and share well.',
             },
             {
-              icon: "Zap",
-              title: "Fast to customize",
+              icon: 'Sparkles',
+              title: 'Subtle motion, not distraction',
               description:
-                "Swap colors, copy, and sections quickly—without rewriting layout logic.",
+                'Optional fade-in-up reveals and staggered grids to guide attention without slowing the page down.',
             },
           ]}
         />
       </section>
 
-      <section id="testimonials">
+      <section id="testimonials" className="py-20 md:py-24">
         <TestimonialsAnimated
-          title="Copy and layout that feel credible."
-          subtitle="Realistic testimonials you can replace with your own—structured to reduce risk and build trust."
+          title="Copy that reads like a real business."
+          subtitle="Realistic testimonials and pricing help you ship a credible first version—then customize to your brand."
           autoplay
           testimonials={[
             {
               quote:
-                "We shipped a waitlist page in a single afternoon. The CTA hierarchy and spacing made it feel premium without extra design work.",
-              name: "Maya Chen",
-              designation: "Growth Lead, Northwind Labs",
-              src: "https://res.cloudinary.com/dwc294mzm/image/upload/c_fill,w_1000,h_750,g_auto/v1/site-images/corporate/default.jpg",
+                'We replaced our cluttered page with this layout and immediately got cleaner demos—people finally understood what we do in 10 seconds.',
+              name: 'Maya Chen',
+              designation: 'Growth Lead, Metricly',
+              src: 'https://res.cloudinary.com/dwc294mzm/image/upload/c_fill,w_1000,h_750,g_auto/v1/site-images/corporate/default.jpg',
             },
             {
               quote:
-                "The pricing section is clean and persuasive. We saw a noticeable lift in clicks to signup compared to our previous page.",
-              name: "Ethan Rivera",
-              designation: "Founder, Juniper Studio",
-              src: "https://res.cloudinary.com/dwc294mzm/image/upload/c_fill,w_1000,h_750,g_auto/v1/site-images/corporate/default.jpg",
+                'The section flow is perfect: proof → features → pricing. We launched in a day and spent the rest of the week improving the offer instead of the UI.',
+              name: 'Jonas Patel',
+              designation: 'Founder, Northwind Labs',
+              src: 'https://res.cloudinary.com/dwc294mzm/image/upload/c_fill,w_1000,h_750,g_auto/v1/site-images/corporate/default.jpg',
             },
             {
               quote:
-                "Simple, fast, and easy to customize. The sections are exactly what we need for client launches.",
-              name: "Sofia Patel",
-              designation: "Creative Director, Brightside Ventures",
-              src: "https://res.cloudinary.com/dwc294mzm/image/upload/c_fill,w_800,h_800,g_auto/v1/site-images/corporate/default.jpg",
+                'The CTA hierarchy is the best part. It keeps the page focused and prevents the “too many buttons” problem.',
+              name: 'Elena Ruiz',
+              designation: 'Design Director, Juniper Studio',
+              src: 'https://res.cloudinary.com/dwc294mzm/image/upload/c_fill,w_800,h_800,g_auto/v1/site-images/corporate/default.jpg',
             },
           ]}
         />
       </section>
 
-      <section id="pricing">
+      <section id="pricing" className="py-20 md:py-24 bg-muted/40">
         <PricingTable
-          headline="Simple pricing for a simple launch."
-          subheadline="Choose a plan that matches your timeline. Upgrade anytime."
+          headline="Simple pricing that makes the next step obvious."
+          subheadline="Pick a plan that matches your launch timeline. Upgrade anytime."
           tiers={[
             {
-              name: "Starter",
-              price: "$29",
-              description: "For solo founders launching a waitlist or MVP.",
-              features: [
-                "Full landing page (8 sections)",
-                "Responsive layout + accessible components",
-                "SEO meta defaults + Open Graph",
-                "Basic customization guide",
-              ],
-              ctaLabel: "Get Starter",
-              ctaHref: "#cta",
+              name: 'Starter',
+              price: '$19',
+              period: '/month',
+              description: 'For solo builders validating an idea.',
+              features: ['Full landing page sections', 'Responsive layout + tokens', 'Basic SEO metadata'],
+              ctaLabel: 'Get Starter',
+              ctaHref: '/contact',
             },
             {
-              name: "Pro",
-              price: "$59",
-              description: "For teams that want faster iteration and polish.",
+              name: 'Pro',
+              price: '$49',
+              period: '/month',
+              description: 'For teams launching a product or service.',
               features: [
-                "Everything in Starter",
-                "Extra section variants (2 hero options, 2 pricing layouts)",
-                "Animation presets (fade-in-up + stagger)",
-                "Copy checklist for conversion",
+                'Everything in Starter',
+                'Testimonial + logo components',
+                'Pricing table + FAQ accordion',
+                'Polished animations',
               ],
-              ctaLabel: "Get Pro",
-              ctaHref: "#cta",
+              ctaLabel: 'Choose Pro',
+              ctaHref: '/contact',
               highlighted: true,
             },
             {
-              name: "Studio",
-              price: "$129",
-              description:
-                "For agencies and studios shipping multiple client pages.",
+              name: 'Team',
+              price: '$99',
+              period: '/month',
+              description: 'For agencies and multi-brand rollouts.',
               features: [
-                "Everything in Pro",
-                "Reusable component library page",
-                "Multi-brand color presets (blue/purple/green accents)",
-                "Priority support (email, 48-hour response)",
+                'Everything in Pro',
+                'Multiple page variants',
+                'Reusable section presets',
+                'Priority implementation notes',
               ],
-              ctaLabel: "Get Studio",
-              ctaHref: "#cta",
+              ctaLabel: 'Talk to Sales',
+              ctaHref: '/contact',
             },
           ]}
         />
       </section>
 
-      <section id="faq">
+      <section id="faq" className="py-20 md:py-24">
         <FAQAccordion
           headline="Questions, answered."
-          subheadline="Everything you need to know before you ship."
+          subheadline="Everything you need to know before you commit."
           items={[
             {
-              question: "Do I need a backend or database?",
+              question: 'Is this a website or a web app starter?',
               answer:
-                "No. This is a static marketing site by default. You can add a form provider later if you want email capture.",
+                'It’s a marketing website starter focused on conversion sections (hero, proof, features, testimonials, pricing, FAQ, CTA). No dashboards or app flows.',
             },
             {
-              question: "Can I change the colors and fonts?",
+              question: 'Do I need a backend or database?',
               answer:
-                "Yes. The palette is defined as tokens and the typography uses clean sans fonts that are easy to swap globally.",
+                'No. The default setup is static/SSR-friendly with no backend. You can add a form provider later if you want.',
             },
             {
-              question: "Is it optimized for mobile?",
+              question: 'Can I change the CTA color from blue to purple?',
               answer:
-                "Yes. Spacing, type scale, and grids are designed mobile-first with clear tap targets and readable line lengths.",
+                'Yes. The palette includes both a primary blue and a secondary purple. Use one as the main CTA and keep the other for accents to maintain clarity.',
             },
             {
-              question: "What’s included in the template?",
+              question: 'What’s included for SEO?',
               answer:
-                "A full landing page with hero, social proof, features, testimonials, pricing, FAQ, final CTA, and footer.",
+                'Semantic headings, clean section structure, and page-level metadata defaults. Add Open Graph images and structured data as needed.',
             },
             {
-              question: "Can I deploy to Vercel?",
+              question: 'Is it accessible?',
               answer:
-                "Yes. It’s a standard Next.js project—connect the repo and deploy.",
+                'The UI uses accessible primitives with high contrast and clear focus rings to support keyboard navigation.',
             },
           ]}
         />
       </section>
 
-      <section id="cta">
+      <section id="cta" className="py-20 md:py-24 bg-muted/40">
         <CTAVortex
-          title="Ready to publish a landing page that converts?"
-          subtitle="Ship today with a clean, high-contrast design system and a proven section flow."
-          ctaLabel="Get Convertly"
-          ctaHref="#pricing"
-          secondaryCtaLabel="Email us"
-          secondaryCtaHref="mailto:hello@convertly.page"
+          title="Ready to ship a landing page that converts?"
+          subtitle="Start with a proven layout, then tailor the copy to your offer. Your next signup is one clean page away."
+          ctaLabel="Get Started Now"
+          ctaHref="/contact"
+          secondaryCtaLabel="Read About"
+          secondaryCtaHref="/about"
         />
       </section>
     </main>
-  );
+  )
 }

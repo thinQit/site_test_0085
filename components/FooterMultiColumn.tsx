@@ -16,10 +16,10 @@ interface FooterMultiColumnProps {
 }
 
 export default function FooterMultiColumn({
-  brand = 'Acme AI',
-  description = 'AI-powered automation platform for modern revenue teams.',
+  brand = 'GrowthPilot',
+  description = 'GrowthPilot helps B2B teams turn more traffic into qualified pipeline with high-converting landing pages, proven messaging, and clear performance insights.',
   columns = [],
-  copyright = '',
+  copyright,
 }: Partial<FooterMultiColumnProps>) {
   return (
     <footer className="bg-foreground text-background">

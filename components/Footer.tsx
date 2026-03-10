@@ -1,95 +1,102 @@
 "use client";
 
 import Link from 'next/link'
-import { MapPin } from 'lucide-react'
+import { Mail, MapPin, Phone } from 'lucide-react'
+import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 
+interface FooterLink {
+  label: string
+  href: string
+}
+
+interface FooterColumn {
+  title: string
+  links: FooterLink[]
+}
+
 interface FooterProps {
-  brand?: string
+  brandName?: string
+  columns?: FooterColumn[]
+  email?: string
+  phone?: string
   address?: string
-  productLinks?: { label: string; href: string }[]
-  companyLinks?: { label: string; href: string }[]
-  legalLinks?: { label: string; href: string }[]
   copyright?: string
+  className?: string
 }
 
 export default function Footer({
-  brand = 'GrowthPilot',
-  address = '120 Market Street, Suite 400, San Francisco, CA 94103',
-  productLinks = [
-    { label: 'Features', href: '#features' },
-    { label: 'Pricing', href: '#pricing' },
-    { label: 'Integrations', href: '#' },
-    { label: 'API', href: '#' },
+  brandName = 'GrowthPilot',
+  columns = [
+    {
+      title: 'Product',
+      links: [
+        { label: 'Features', href: '#features' },
+        { label: 'Pricing', href: '#pricing' },
+        { label: 'Integrations', href: '#integrations' },
+      ],
+    },
+    {
+      title: 'Company',
+      links: [
+        { label: 'About', href: '#about' },
+        { label: 'Careers', href: '#careers' },
+        { label: 'Contact', href: '#contact' },
+      ],
+    },
   ],
-  companyLinks = [
-    { label: 'About', href: '#' },
-    { label: 'Customers', href: '#' },
-    { label: 'Careers', href: '#' },
-    { label: 'Contact', href: '#' },
-  ],
-  legalLinks = [
-    { label: 'Privacy Policy', href: '#' },
-    { label: 'Terms of Service', href: '#' },
-    { label: 'Cookie Policy', href: '#' },
-    { label: 'Security', href: '#' },
-  ],
+  email = 'hello@growthpilot.io',
+  phone = '+1 (415) 555-0199',
+  address = '548 Market Street, San Francisco, CA',
   copyright = '© 2026 GrowthPilot. All rights reserved.',
+  className = '',
 }: Partial<FooterProps>) {
   return (
-    <footer className="border-t bg-[#f8fafc]">
+    <footer className={cn('border-t border-border bg-muted/20', className)}>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-4 md:px-6">
-        <div>
-          <h3 className="text-lg font-semibold text-[#111827]">{brand}</h3>
-          <p className="mt-3 text-sm text-[#111827]/70">
-            Built for modern teams that want faster growth with less manual work.
+        <div className="md:col-span-1">
+          <h3 className="text-lg font-bold tracking-tight text-foreground">{brandName}</h3>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Convert more visitors with a clean, high-performance funnel and one clear call-to-action per section.
           </p>
         </div>
 
-        <div>
-          <h4 className="text-sm font-semibold text-[#111827]">Product</h4>
-          <ul className="mt-4 space-y-2">
-            {productLinks.map((link) => (
-              <li key={link.label}>
-                <Link href={link.href} className="text-sm text-[#111827]/70 hover:text-[#111827]">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {columns.map((column, idx) => (
+          <div key={column.title + idx}>
+            <h4 className="text-sm font-semibold text-foreground">{column.title}</h4>
+            <ul className="mt-4 space-y-2">
+              {column.links.map((link, lidx) => (
+                <li key={link.href + lidx}>
+                  <Link href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
 
         <div>
-          <h4 className="text-sm font-semibold text-[#111827]">Company</h4>
-          <ul className="mt-4 space-y-2">
-            {companyLinks.map((link) => (
-              <li key={link.label}>
-                <Link href={link.href} className="text-sm text-[#111827]/70 hover:text-[#111827]">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+          <h4 className="text-sm font-semibold text-foreground">Contact</h4>
+          <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+            <li className="flex items-start gap-2">
+              <Mail className="mt-0.5 h-4 w-4 text-primary" />
+              <span>{email}</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <Phone className="mt-0.5 h-4 w-4 text-primary" />
+              <span>{phone}</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <MapPin className="mt-0.5 h-4 w-4 text-primary" />
+              <span>{address}</span>
+            </li>
           </ul>
-        </div>
-
-        <div>
-          <h4 className="text-sm font-semibold text-[#111827]">Legal</h4>
-          <ul className="mt-4 space-y-2">
-            {legalLinks.map((link) => (
-              <li key={link.label}>
-                <Link href={link.href} className="text-sm text-[#111827]/70 hover:text-[#111827]">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <p className={cn('mt-6 inline-flex items-start gap-2 text-sm text-[#111827]/70')}>
-            <MapPin className="mt-0.5 h-4 w-4 shrink-0" />
-            <span>{address}</span>
-          </p>
         </div>
       </div>
-      <div className="border-t px-4 py-4 text-center text-xs text-[#111827]/60 md:px-6">{copyright}</div>
+
+      <Separator />
+      <div className="mx-auto max-w-7xl px-4 py-5 text-xs text-muted-foreground md:px-6">{copyright}</div>
     </footer>
   )
 }

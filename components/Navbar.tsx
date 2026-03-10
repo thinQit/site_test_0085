@@ -2,76 +2,90 @@
 
 import Link from 'next/link'
 import { Menu, Sparkles } from 'lucide-react'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { useState } from 'react'
+
+interface NavLink {
+  label: string
+  href: string
+}
 
 interface NavbarProps {
   logoText?: string
-  ctaText?: string
+  links?: NavLink[]
+  ctaLabel?: string
   ctaHref?: string
-  links?: { label: string; href: string }[]
+  className?: string
 }
 
 export default function Navbar({
   logoText = 'GrowthPilot',
-  ctaText = 'Start Free Trial',
-  ctaHref = '#pricing',
   links = [
     { label: 'Features', href: '#features' },
     { label: 'Testimonials', href: '#testimonials' },
     { label: 'Pricing', href: '#pricing' },
     { label: 'FAQ', href: '#faq' },
   ],
+  ctaLabel = 'Start Free Trial',
+  ctaHref = '#cta',
+  className = '',
 }: Partial<NavbarProps>) {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/90 backdrop-blur">
+    <header className={cn('sticky top-0 z-50 border-b border-border/70 bg-background/95 backdrop-blur', className)}>
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
-        <Link href="#" className="inline-flex items-center gap-2 font-semibold text-[#111827]">
-          <span className="rounded-lg bg-[#2563EB] p-1.5 text-white">
-            <Sparkles className="h-4 w-4" />
-          </span>
-          <span>{logoText}</span>
+        <Link href="#" className="flex items-center gap-2 text-foreground">
+          <Sparkles className="h-5 w-5 text-primary" />
+          <span className="text-base font-bold tracking-tight">{logoText}</span>
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
-          {links.map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm font-medium text-[#111827]/80 hover:text-[#111827]">
+        <div className="hidden items-center gap-7 md:flex">
+          {links.map((link, idx) => (
+            <Link key={link.href + idx} href={link.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
               {link.label}
             </Link>
           ))}
         </div>
 
         <div className="hidden md:block">
-          <Button asChild className="rounded-lg bg-[#2563EB] px-6 py-3 font-semibold text-white hover:bg-[#1d4ed8]">
-            <Link href={ctaHref}>{ctaText}</Link>
+          <Button asChild className="rounded-lg px-6 py-3 font-semibold tracking-tight">
+            <Link href={ctaHref}>{ctaLabel}</Link>
           </Button>
         </div>
 
         <button
           type="button"
+          aria-label="Toggle navigation menu"
           onClick={() => setOpen(!open)}
-          className="inline-flex rounded-lg border p-2 text-[#111827] md:hidden"
-          aria-label="Toggle menu"
+          className="rounded-md border border-border p-2 text-foreground md:hidden"
         >
           <Menu className="h-5 w-5" />
         </button>
       </nav>
 
-      <div className={cn('border-t bg-white px-4 py-4 md:hidden', open ? 'block' : 'hidden')}>
-        <div className="flex flex-col gap-4">
-          {links.map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm font-medium text-[#111827]" onClick={() => setOpen(false)}>
-              {link.label}
-            </Link>
-          ))}
-          <Button asChild className="rounded-lg bg-[#2563EB] px-6 py-3 font-semibold text-white hover:bg-[#1d4ed8]">
-            <Link href={ctaHref}>{ctaText}</Link>
-          </Button>
+      {open && (
+        <div className="border-t border-border bg-background px-4 py-4 md:hidden">
+          <div className="flex flex-col gap-3">
+            {links.map((link, idx) => (
+              <Link
+                key={link.href + '-mobile-' + idx}
+                href={link.href}
+                className="text-sm font-medium text-muted-foreground hover:text-foreground"
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Button asChild className="mt-2 rounded-lg px-6 py-3 font-semibold tracking-tight">
+              <Link href={ctaHref} onClick={() => setOpen(false)}>
+                {ctaLabel}
+              </Link>
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   )
 }

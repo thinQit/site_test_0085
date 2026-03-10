@@ -1,8 +1,8 @@
-"use client";
-import { AuroraBackground } from "@/components/ui/backgrounds/aurora-background";
-import { TextGenerateEffect } from "@/components/ui/text/text-generate-effect";
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+'use client';
+import { AuroraBackground } from '@/components/ui/backgrounds/aurora-background';
+import { TextGenerateEffect } from '@/components/ui/text/text-generate-effect';
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
 
 interface HeroAuroraProps {
   badge?: string;
@@ -13,28 +13,28 @@ interface HeroAuroraProps {
 }
 
 export default function HeroAurora({
-  badge = "New: AI Workflow Studio",
-  headline = "Turn more visitors into qualified pipeline",
-  subheadline = "Launch high-converting funnels, automate follow-ups, and give your team real-time performance insights.",
-  primaryCta = { label: "Start Free Trial", href: "#" },
-  secondaryCta = { label: "Book a Demo", href: "#" },
+  badge = 'Trusted by 1,200+ growth teams',
+  headline = 'Turn more clicks into qualified pipeline',
+  subheadline = 'Launch conversion-focused landing pages in minutes and optimize every section with clear performance insights.',
+  primaryCta = { label: 'Start Free Trial', href: '#pricing' },
+  secondaryCta = { label: 'Book a Demo', href: '#contact' },
 }: Partial<HeroAuroraProps>) {
   return (
-    <AuroraBackground auroraColors={['#3b82f6','#06b6d4','#67e8f9','#bfdbfe','#38bdf8']}>
+    <AuroraBackground auroraColors={['#3b82f6', '#06b6d4', '#67e8f9', '#bfdbfe', '#38bdf8']}>
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.8, ease: "easeInOut" }}
+        transition={{ delay: 0.3, duration: 0.8, ease: 'easeInOut' }}
         className="relative flex flex-col gap-4 items-center justify-center px-4 py-24 md:py-36"
       >
         {badge && (
-          <span className="mb-2 inline-block rounded-full border bg-background/50 px-4 py-1.5 text-sm font-medium text-foreground backdrop-blur-sm">
+          <span className="mb-2 inline-block rounded-full border bg-background/50 backdrop-blur-sm px-4 py-1.5 text-sm font-medium text-foreground">
             {badge}
           </span>
         )}
         <TextGenerateEffect
           words={headline}
-          className="max-w-4xl text-center text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl"
+          className="text-4xl font-bold text-center tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl max-w-4xl"
         />
         <p className="mt-4 max-w-2xl text-center text-lg text-muted-foreground md:text-xl">{subheadline}</p>
         <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row">

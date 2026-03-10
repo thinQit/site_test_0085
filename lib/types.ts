@@ -3,18 +3,9 @@ export interface NavItem {
   href: string;
 }
 
-export interface CtaLink {
+export interface Cta {
   label: string;
   href: string;
-}
-
-export interface SectionBase {
-  id: string;
-  type: string;
-  headline: string;
-  subheadline?: string;
-  primaryCta?: CtaLink;
-  secondaryCta?: CtaLink;
 }
 
 export interface FeatureItem {
@@ -26,16 +17,20 @@ export interface TestimonialItem {
   quote: string;
   name: string;
   title: string;
-  company: string;
+  rating: number;
 }
 
-export interface PricingPlan {
+export interface PricingTier {
   name: string;
-  price: string;
+  priceMonthly: number;
   description: string;
-  features: string[];
+  highlights: string[];
   ctaLabel: string;
   ctaHref: string;
-  highlighted?: boolean;
-  badge?: string;
+  recommended?: boolean;
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
 }

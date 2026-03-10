@@ -1,5 +1,5 @@
-"use client";
-import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
+'use client';
+import { AnimatedTestimonials } from '@/components/ui/animated-testimonials';
 
 interface TestimonialItem {
   quote: string;
@@ -16,13 +16,13 @@ interface TestimonialsAnimatedProps {
 }
 
 export default function TestimonialsAnimated({
-  headline = 'Trusted by growth teams worldwide',
-  subheadline = 'See how leaders use our platform to drive measurable revenue impact.',
+  headline = 'Loved by high-performing marketing teams',
+  subheadline = 'See how teams increase conversions and lower acquisition costs with GrowthPilot.',
   testimonials = [],
   autoplay = true,
 }: Partial<TestimonialsAnimatedProps>) {
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-20 md:py-24">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="mx-auto mb-8 max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">{headline}</h2>

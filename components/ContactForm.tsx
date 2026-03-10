@@ -19,12 +19,12 @@ interface ContactFormProps {
 }
 
 export default function ContactForm({
-  headline = 'Talk to our team',
-  subheadline = 'Share your goals and we will show you exactly how to scale with AI.',
+  headline = 'Talk to our growth team',
+  subheadline = 'Share your goals and we will send a tailored conversion plan within one business day.',
   contactInfo = [],
 }: Partial<ContactFormProps>) {
   return (
-    <section className="bg-muted/50 py-20 md:py-28">
+    <section className="py-20 md:py-24 bg-muted/50">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">{headline}</h2>
