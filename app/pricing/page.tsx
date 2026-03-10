@@ -1,101 +1,100 @@
 export const dynamic = 'force-dynamic';
 
-import HeroAurora from '@/components/HeroAurora'
-import PricingTable from '@/components/PricingTable'
-import FAQAccordion from '@/components/FAQAccordion'
-import CTAVortex from '@/components/CTAVortex'
+import HeroAurora from "@/components/HeroAurora"
+import PricingTable from "@/components/PricingTable"
+import FAQAccordion from "@/components/FAQAccordion"
+import CTAVortex from "@/components/CTAVortex"
+import ComparisonTable from "@/components/ComparisonTable"
 
 export default function PricingPage() {
   return (
-    <main>
-      <section className="py-20 md:py-24">
-        <HeroAurora
-          badge="Annual billing saves 20%"
-          title="Pricing that stays out of the way."
-          subtitle="Choose a plan, launch your page, and iterate on your offer. Annual billing saves 20%."
-          primaryCta={{ label: 'Choose Pro', href: '/contact' }}
-          secondaryCta={{ label: 'Read FAQs', href: '/#faq' }}
-        />
-      </section>
+    <>
+      <HeroAurora
+        badge="One-time pricing"
+        headline="Pricing that stays simple."
+        subheadline="One-time plans for fast launches—no subscriptions, no surprises."
+        primaryCta={{ label: "Choose Pro", href: "#plans" }}
+        secondaryCta={{ label: "Compare plans", href: "#plans" }}
+      />
 
-      <section className="py-20 md:py-24 bg-muted/40">
+      <div id="plans">
         <PricingTable
-          headline="Pick your plan"
-          subheadline="Clear tiers with a recommended option to reduce decision friction."
+          headline="Plans"
+          subheadline="Pick the license that matches your use case."
           tiers={[
             {
-              name: 'Starter',
-              price: '$19',
-              period: '/month',
-              description: 'For solo builders validating an idea.',
-              features: ['Conversion section layout', 'Tailwind tokens + typography', 'Basic SEO defaults'],
-              ctaLabel: 'Get Starter',
-              ctaHref: '/contact',
+              name: "Starter",
+              price: "$29",
+              period: "one-time",
+              description: "Single project license.",
+              features: [
+                "Home page sections",
+                "Reusable components",
+                "Light theme optimized for conversion",
+              ],
+              ctaLabel: "Buy Starter",
+              ctaHref: "/contact",
+              highlighted: false,
             },
             {
-              name: 'Pro',
-              price: '$49',
-              period: '/month',
-              description: 'For teams launching a product or service.',
+              name: "Pro",
+              price: "$59",
+              period: "one-time",
+              description: "Best for teams and multiple pages.",
               features: [
-                'Everything in Starter',
-                'Testimonials + logo wall',
-                'Pricing + FAQ components',
-                'Subtle animations',
+                "Home + About + Features + Contact",
+                "Pricing + FAQ patterns",
+                "Animation presets",
               ],
-              ctaLabel: 'Choose Pro',
-              ctaHref: '/contact',
+              ctaLabel: "Buy Pro",
+              ctaHref: "/contact",
               highlighted: true,
             },
             {
-              name: 'Team',
-              price: '$99',
-              period: '/month',
-              description: 'For agencies and multi-brand rollouts.',
-              features: [
-                'Everything in Pro',
-                'Multiple page variants',
-                'Reusable section presets',
-                'Priority implementation notes',
-              ],
-              ctaLabel: 'Talk to Sales',
-              ctaHref: '/contact',
+              name: "Agency",
+              price: "$129",
+              period: "one-time",
+              description: "Multi-client usage.",
+              features: ["Multi-project license", "Section library page", "Brand tokens guide"],
+              ctaLabel: "Buy Agency",
+              ctaHref: "/contact",
+              highlighted: false,
             },
           ]}
         />
-      </section>
+      </div>
 
-      <section className="py-20 md:py-24">
+      <ComparisonTable />
+
+      <div id="faq">
         <FAQAccordion
-          headline="Pricing FAQs"
-          subheadline="Quick answers to common questions about plans and billing."
+          headline="Pricing FAQ"
+          subheadline="Quick answers about licensing and usage."
           items={[
             {
-              question: 'Do you offer annual billing?',
-              answer: 'Yes—annual billing saves 20% compared to monthly.',
+              question: "Is the payment recurring?",
+              answer: "No. All plans are one-time purchases.",
             },
             {
-              question: 'Can I upgrade later?',
-              answer: 'Yes. Start with Starter or Pro and upgrade anytime as your needs grow.',
+              question: "Can I use this for client work?",
+              answer: "Yes—choose the Agency plan for multi-project usage.",
             },
             {
-              question: 'Do you provide implementation help?',
-              answer: 'Team includes priority guidance and implementation notes for faster rollout.',
+              question: "Do you offer refunds?",
+              answer: "Yes. 14-day refund policy if it’s not a fit.",
             },
           ]}
         />
-      </section>
+      </div>
 
-      <section className="py-20 md:py-24 bg-muted/40">
-        <CTAVortex
-          title="Ship your landing page this week."
-          subtitle="Use a proven structure and spend your time on the offer—not the layout."
-          ctaLabel="Choose Pro"
-          ctaHref="/contact"
-          secondaryCtaLabel="Back to Home"
-          secondaryCtaHref="/"
-        />
-      </section>
-    </main>
+      <CTAVortex
+        headline="Want help tailoring the copy to your product?"
+        subheadline="We can help you tighten messaging and align each section to one clear action."
+        ctaLabel="Contact us"
+        ctaHref="/contact"
+        secondaryCtaLabel="View features"
+        secondaryCtaHref="/features"
+      />
+    </>
   )
 }

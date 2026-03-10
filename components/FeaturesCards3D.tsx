@@ -1,7 +1,7 @@
-'use client';
-import * as React from 'react';
-import { CardContainer, CardBody, CardItem } from '@/components/ui/effects/3d-card-effect';
-import { BarChart3, Shield, Zap, Sparkles, Globe, Rocket, Layers, Smartphone, Search } from 'lucide-react';
+"use client";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/effects/3d-card-effect";
+import { Sparkles, Globe, Shield, Star, Zap, Heart, ShieldCheck, CreditCard, Rocket, ListChecks, Flag, Type, User, Target, BarChart3, Database, FileText, LifeBuoy } from 'lucide-react';
+import React from "react";
 
 interface Feature {
   icon: string;
@@ -16,24 +16,23 @@ interface FeaturesCards3DProps {
   features: Feature[];
 }
 
-const iconMap: Record<string, React.ElementType> = { Smartphone, Search, 
-  BarChart3,
-  Shield,
-  Zap,
+const iconMap: Record<string, React.ElementType> = { ShieldCheck, CreditCard, Rocket, ListChecks, Flag, Type, User, Target, BarChart3, Database, FileText, LifeBuoy, 
   Sparkles,
   Globe,
-  Rocket,
-  Layers,
+  Shield,
+  Star,
+  Zap,
+  Heart,
 };
 
 export default function FeaturesCards3D({
-  badge = 'Features',
-  headline = 'Everything you need to improve conversions',
-  subheadline = 'From messaging clarity to funnel analytics, GrowthPilot helps your team move faster with confidence.',
+  badge = '',
+  headline = 'Everything you need to increase conversions',
+  subheadline = '',
   features = [],
 }: Partial<FeaturesCards3DProps>) {
   return (
-    <section className="py-20 md:py-24 bg-muted/50">
+    <section className="py-20 md:py-28 bg-muted/50">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="mx-auto max-w-2xl text-center">
           {badge && <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-wider text-primary">{badge}</span>}
@@ -45,9 +44,9 @@ export default function FeaturesCards3D({
             const Icon = iconMap[feature.icon] || Sparkles;
             return (
               <CardContainer key={index} className="inter-var">
-                <CardBody className="relative group/card border-black/[0.1] dark:bg-black dark:border-white/[0.2] w-auto h-auto rounded-xl p-6 border bg-background">
+                <CardBody className="relative group/card border-black/[0.1] w-auto h-auto rounded-xl border bg-background p-6 dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]">
                   <CardItem translateZ="50" className="mb-4 text-primary">
-                    {React.createElement(Icon, { className: 'h-8 w-8' })}
+                    {React.createElement(Icon, { className: "h-8 w-8" })}
                   </CardItem>
                   <CardItem translateZ="60" className="text-xl font-bold text-foreground">
                     {feature.title}

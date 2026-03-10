@@ -1,29 +1,33 @@
-'use client'
-
-import { ButtonHTMLAttributes } from 'react'
+'use client';
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  label?: string
+interface PrimaryButtonProps {
+  children?: React.ReactNode
   className?: string
+  type?: 'button' | 'submit' | 'reset'
+  disabled?: boolean
+  onClick?: () => void
 }
 
 export default function PrimaryButton({
-  label = 'Get Started',
+  children = 'Get Started',
   className = '',
   type = 'button',
-  ...props
+  disabled = false,
+  onClick = () => {},
 }: Partial<PrimaryButtonProps>) {
   return (
-    <button
+    <Button
       type={type}
+      disabled={disabled}
+      onClick={onClick}
       className={cn(
-        'inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 font-semibold tracking-tight text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
+        'rounded-lg bg-[#2563EB] px-6 py-3 font-semibold text-white shadow-sm hover:bg-[#1D4ED8] focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2',
         className
       )}
-      {...props}
     >
-      {label}
-    </button>
+      {children}
+    </Button>
   )
 }

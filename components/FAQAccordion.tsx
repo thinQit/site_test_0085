@@ -15,13 +15,13 @@ interface FAQAccordionProps {
 
 export default function FAQAccordion({
   headline = 'Frequently asked questions',
-  subheadline = 'Everything you need to know before launching your next campaign.',
+  subheadline = '',
   items = [],
 }: Partial<FAQAccordionProps>) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-20 md:py-24">
+    <section className="py-20 md:py-28">
       <div className="container mx-auto max-w-3xl px-4">
         <div className="text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">{headline}</h2>
@@ -40,7 +40,9 @@ export default function FAQAccordion({
                   aria-expanded={isOpen}
                 >
                   <span className="text-base font-medium text-foreground">{item.question}</span>
-                  <span className={'text-muted-foreground transition-transform ' + (isOpen ? 'rotate-180' : '')}>&#9660;</span>
+                  <span className={'text-muted-foreground transition-transform ' + (isOpen ? 'rotate-180' : '')}>
+                    &#9660;
+                  </span>
                 </button>
                 {isOpen && (
                   <div className="px-5 pb-5">

@@ -1,30 +1,25 @@
-'use client'
+"use client"
 
-import { useEffect } from 'react'
-import { Button } from '@/components/ui/button'
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default function Error({
-  error,
   reset,
 }: {
-  error: Error & { digest?: string }
   reset: () => void
 }) {
-  useEffect(() => {
-    console.error(error)
-  }, [error])
-
   return (
-    <main className="mx-auto max-w-3xl px-6 md:px-8 py-20 md:py-24 text-center">
-      <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900">
-        Something went wrong
-      </h1>
-      <p className="mt-4 text-gray-600">
-        We hit an unexpected issue. Please try again.
+    <div className="mx-auto flex min-h-[60vh] max-w-3xl flex-col items-center justify-center px-6 text-center">
+      <h1 className="text-3xl font-bold text-foreground md:text-4xl">Something went wrong.</h1>
+      <p className="mt-4 text-muted-foreground">
+        We hit an unexpected error while loading this page.
       </p>
-      <Button onClick={reset} className="mt-8">
-        Try again
-      </Button>
-    </main>
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <Button onClick={reset}>Try again</Button>
+        <Button asChild variant="outline">
+          <Link href="/">Back to home</Link>
+        </Button>
+      </div>
+    </div>
   )
 }

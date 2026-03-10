@@ -19,13 +19,13 @@ interface NavbarStickyProps {
 export default function NavbarSticky({
   logo = 'GrowthPilot',
   navItems = [],
-  ctaLabel = 'Start Free Trial',
-  ctaHref = '#pricing',
+  ctaLabel = '',
+  ctaHref = '#',
 }: Partial<NavbarStickyProps>) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-md">
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <Link href="/" className="text-xl font-bold text-foreground">
           {logo}
@@ -55,7 +55,7 @@ export default function NavbarSticky({
           }}
           aria-label="Toggle menu"
         >
-          <svg className="h-6 w-6 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             {mobileOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             ) : (

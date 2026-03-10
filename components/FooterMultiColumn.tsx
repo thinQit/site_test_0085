@@ -17,9 +17,9 @@ interface FooterMultiColumnProps {
 
 export default function FooterMultiColumn({
   brand = 'GrowthPilot',
-  description = 'GrowthPilot helps B2B teams turn more traffic into qualified pipeline with high-converting landing pages, proven messaging, and clear performance insights.',
+  description = 'Revenue-focused growth platform for modern teams.',
   columns = [],
-  copyright,
+  copyright = '',
 }: Partial<FooterMultiColumnProps>) {
   return (
     <footer className="bg-foreground text-background">
@@ -37,7 +37,10 @@ export default function FooterMultiColumn({
                   {col.links.map(function (link) {
                     return (
                       <li key={link.href}>
-                        <Link href={link.href} className="text-sm text-background/70 transition-colors hover:text-background">
+                        <Link
+                          href={link.href}
+                          className="text-sm text-background/70 transition-colors hover:text-background"
+                        >
                           {link.label}
                         </Link>
                       </li>

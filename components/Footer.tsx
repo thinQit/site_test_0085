@@ -1,102 +1,96 @@
 "use client";
 
 import Link from 'next/link'
-import { Mail, MapPin, Phone } from 'lucide-react'
-import { Separator } from '@/components/ui/separator'
+import { Sparkles, ArrowRight } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-
-interface FooterLink {
-  label: string
-  href: string
-}
-
-interface FooterColumn {
-  title: string
-  links: FooterLink[]
-}
 
 interface FooterProps {
   brandName?: string
-  columns?: FooterColumn[]
-  email?: string
-  phone?: string
-  address?: string
-  copyright?: string
+  addressLine?: string
+  ctaLabel?: string
+  ctaHref?: string
   className?: string
 }
 
 export default function Footer({
-  brandName = 'GrowthPilot',
-  columns = [
-    {
-      title: 'Product',
-      links: [
-        { label: 'Features', href: '#features' },
-        { label: 'Pricing', href: '#pricing' },
-        { label: 'Integrations', href: '#integrations' },
-      ],
-    },
-    {
-      title: 'Company',
-      links: [
-        { label: 'About', href: '#about' },
-        { label: 'Careers', href: '#careers' },
-        { label: 'Contact', href: '#contact' },
-      ],
-    },
-  ],
-  email = 'hello@growthpilot.io',
-  phone = '+1 (415) 555-0199',
-  address = '548 Market Street, San Francisco, CA',
-  copyright = '© 2026 GrowthPilot. All rights reserved.',
+  brandName = 'AcmeFlow',
+  addressLine = '123 Market Street, Suite 400, San Francisco, CA 94103',
+  ctaLabel = 'Book a Demo',
+  ctaHref = '#cta',
   className = '',
 }: Partial<FooterProps>) {
-  return (
-    <footer className={cn('border-t border-border bg-muted/20', className)}>
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-4 md:px-6">
-        <div className="md:col-span-1">
-          <h3 className="text-lg font-bold tracking-tight text-foreground">{brandName}</h3>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Convert more visitors with a clean, high-performance funnel and one clear call-to-action per section.
-          </p>
-        </div>
+  const productLinks = ['Features', 'Integrations', 'Automation', 'Analytics']
+  const companyLinks = ['About', 'Customers', 'Careers', 'Contact']
+  const legalLinks = ['Privacy', 'Terms', 'Security', 'Cookie Policy']
 
-        {columns.map((column, idx) => (
-          <div key={column.title + idx}>
-            <h4 className="text-sm font-semibold text-foreground">{column.title}</h4>
-            <ul className="mt-4 space-y-2">
-              {column.links.map((link, lidx) => (
-                <li key={link.href + lidx}>
-                  <Link href={link.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-                    {link.label}
+  return (
+    <footer className={cn('border-t bg-white', className)}>
+      <div className="mx-auto max-w-7xl px-4 py-16 md:px-6">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
+          <div className="lg:col-span-2">
+            <div className="mb-4 inline-flex items-center gap-2 text-lg font-bold text-[#111827]">
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-[#2563EB] text-white">
+                <Sparkles className="h-4 w-4" />
+              </span>
+              {brandName}
+            </div>
+            <p className="max-w-md text-sm text-muted-foreground">
+              Turn your revenue workflows into predictable growth with automation, reporting, and team alignment in one platform.
+            </p>
+            <p className="mt-4 text-sm text-[#111827]/70">{addressLine}</p>
+            <Button asChild className="mt-6 rounded-lg bg-[#2563EB] px-6 py-3 font-semibold text-white hover:bg-[#1D4ED8]">
+              <Link href={ctaHref} className="inline-flex items-center gap-2">
+                {ctaLabel}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-sm font-semibold text-[#111827]">Product</h3>
+            <ul className="space-y-3">
+              {productLinks.map((item) => (
+                <li key={item}>
+                  <Link href="#" className="text-sm text-muted-foreground hover:text-[#111827]">
+                    {item}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
-        ))}
 
-        <div>
-          <h4 className="text-sm font-semibold text-foreground">Contact</h4>
-          <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-            <li className="flex items-start gap-2">
-              <Mail className="mt-0.5 h-4 w-4 text-primary" />
-              <span>{email}</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <Phone className="mt-0.5 h-4 w-4 text-primary" />
-              <span>{phone}</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <MapPin className="mt-0.5 h-4 w-4 text-primary" />
-              <span>{address}</span>
-            </li>
-          </ul>
+          <div>
+            <h3 className="mb-4 text-sm font-semibold text-[#111827]">Company</h3>
+            <ul className="space-y-3">
+              {companyLinks.map((item) => (
+                <li key={item}>
+                  <Link href="#" className="text-sm text-muted-foreground hover:text-[#111827]">
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-sm font-semibold text-[#111827]">Legal</h3>
+            <ul className="space-y-3">
+              {legalLinks.map((item) => (
+                <li key={item}>
+                  <Link href="#" className="text-sm text-muted-foreground hover:text-[#111827]">
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-12 border-t pt-6 text-xs text-muted-foreground">
+          © {new Date().getFullYear()} {brandName}. All rights reserved.
         </div>
       </div>
-
-      <Separator />
-      <div className="mx-auto max-w-7xl px-4 py-5 text-xs text-muted-foreground md:px-6">{copyright}</div>
     </footer>
   )
 }

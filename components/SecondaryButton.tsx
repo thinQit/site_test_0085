@@ -1,29 +1,34 @@
-'use client'
-
-import { ButtonHTMLAttributes } from 'react'
+'use client';
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-interface SecondaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  label?: string
+interface SecondaryButtonProps {
+  children?: React.ReactNode
   className?: string
+  type?: 'button' | 'submit' | 'reset'
+  disabled?: boolean
+  onClick?: () => void
 }
 
 export default function SecondaryButton({
-  label = 'Learn More',
+  children = 'Learn More',
   className = '',
   type = 'button',
-  ...props
+  disabled = false,
+  onClick = () => {},
 }: Partial<SecondaryButtonProps>) {
   return (
-    <button
+    <Button
       type={type}
+      variant="outline"
+      disabled={disabled}
+      onClick={onClick}
       className={cn(
-        'inline-flex items-center justify-center rounded-lg border border-border bg-background px-6 py-3 font-semibold tracking-tight text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2',
+        'rounded-lg border-border bg-transparent px-6 py-3 font-semibold text-[#111827] hover:bg-muted focus-visible:ring-2 focus-visible:ring-[#2563EB] focus-visible:ring-offset-2',
         className
       )}
-      {...props}
     >
-      {label}
-    </button>
+      {children}
+    </Button>
   )
 }

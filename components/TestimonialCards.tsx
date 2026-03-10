@@ -1,63 +1,57 @@
 "use client";
 
-import { Star } from 'lucide-react'
-import { Card } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
+import { cn } from '@/lib/utils'
+import { Quote } from 'lucide-react'
 
 interface Testimonial {
   quote: string
   name: string
   role: string
-  company: string
 }
 
 interface TestimonialCardsProps {
+  title?: string
   testimonials?: Testimonial[]
-  ratingText?: string
+  className?: string
 }
 
 export default function TestimonialCards({
+  title = 'Teams are shipping faster and closing stronger',
   testimonials = [
     {
-      quote: 'We replaced three disconnected tools and doubled our meeting-to-opportunity conversion.',
+      quote: 'AcmeFlow helped us cut lead response times by 72% in the first month.',
       name: 'Maya Chen',
-      role: 'VP of Revenue',
-      company: 'Cloudloop',
+      role: 'Head of Revenue, NovaTech',
     },
     {
-      quote: 'Our SDR team now spends more time selling and less time managing spreadsheets.',
-      name: 'Jordan Ellis',
-      role: 'Sales Director',
-      company: 'Northstar AI',
+      quote: 'Our reps finally have a clear daily plan. Productivity and morale both improved.',
+      name: 'David Romero',
+      role: 'Sales Director, BrightLoop',
     },
     {
-      quote: 'The AI lead scoring is shockingly accurate. We close faster with less back-and-forth.',
+      quote: 'Forecast calls are now based on real activity, not assumptions.',
       name: 'Priya Nair',
-      role: 'Head of Growth',
-      company: 'Metricly',
+      role: 'VP Sales, SummitOne',
     },
   ],
-  ratingText = 'Rated 4.9/5 by 600+ GTM leaders',
+  className = '',
 }: Partial<TestimonialCardsProps>) {
   return (
-    <section id="testimonials" className="bg-[#f8fafc] py-20 md:py-24">
+    <section id="testimonials" className={cn('bg-white py-20 md:py-24', className)}>
       <div className="mx-auto max-w-7xl px-4 md:px-6">
-        <div className="mb-8 flex items-center gap-2 text-[#111827]">
-          {[1, 2, 3, 4, 5].map((i) => (
-            <Star key={i} className="h-5 w-5 fill-[#f59e0b] text-[#f59e0b]" />
-          ))}
-          <span className="text-sm font-medium text-[#111827]/75">{ratingText}</span>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-3">
+        <h2 className="mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-[#111827] md:text-4xl">{title}</h2>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
           {testimonials.map((item) => (
-            <Card key={item.name} className="rounded-xl border bg-white p-6 shadow-sm">
-              <p className="text-sm leading-7 text-[#111827]/80">“{item.quote}”</p>
-              <div className="mt-6">
-                <p className="font-semibold text-[#111827]">{item.name}</p>
-                <p className="text-sm text-[#111827]/65">
-                  {item.role}, {item.company}
-                </p>
-              </div>
+            <Card key={item.name} className="rounded-xl border border-border bg-card shadow-sm">
+              <CardContent className="p-6">
+                <Quote className="h-5 w-5 text-[#2563EB]" />
+                <p className="mt-4 text-sm leading-relaxed text-[#111827]/85">“{item.quote}”</p>
+                <div className="mt-6">
+                  <p className="text-sm font-semibold text-[#111827]">{item.name}</p>
+                  <p className="text-xs text-muted-foreground">{item.role}</p>
+                </div>
+              </CardContent>
             </Card>
           ))}
         </div>

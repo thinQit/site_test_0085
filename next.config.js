@@ -3,11 +3,11 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-      },
-    ],
-  },
+        protocol: "https",
+        hostname: "res.cloudinary.com"
+      }
+    ]
+  }
 };
 
 nextConfig.typescript = Object.assign(nextConfig.typescript || {}, { ignoreBuildErrors: true });
